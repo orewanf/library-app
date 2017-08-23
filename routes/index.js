@@ -8,5 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/add-new-book', homeController.saveNewBook);
+router.post('/api/get-book-list', homeController.getBookList);
+router.put('/api/update-book', homeController.updateBook);
+router.delete('/api/delete-book/:id', homeController.deleteBook);
 
 module.exports = router;
