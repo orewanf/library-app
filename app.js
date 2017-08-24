@@ -25,7 +25,10 @@ nunjucks.configure('views', {
 });
 
 mongoose.connect(mongoDB, {
-  useMongoClient: true
+  useMongoClient: true,
+  keepAlive: true,
+  socketTimeoutMS: 30000,
+  reconnectTries: 30
 });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
