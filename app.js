@@ -39,7 +39,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(history());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/js', express.static(path.join(__dirname, 'public/javascripts')));
 app.use('/css', express.static(path.join(__dirname, 'public/stylesheets')));
@@ -52,6 +51,10 @@ app.use(function(req, res, next) {
   next();
 });
 app.use('/', index);
+
+app.use(history({
+  index: '/index.html'
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
