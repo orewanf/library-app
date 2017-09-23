@@ -16,16 +16,14 @@ describe('Book', function () {
         });
     });
 
-    it('Should be invalid if year is string', function (done) {
-        var newBook = new Book({
-            title: 'test',
-            author: 'test',
-            genre: 'test',
-            year: '1'
-        });
-
-        newBook.validate(function (err) {
-            expect(err.errors.year).to.exist;
+    it('should return all books', function (done) {
+        var BookMock = sinon.mock(Book);
+        var expectedResult = {status: true, book: []};
+        BookMock.expects('find').yields(null, expectedResult);
+        Book.find(function (err, result) {
+            BookMock.verify();
+            BookMock.restore();
+            expect(result.status).to.be.true;
             done();
         });
     });
