@@ -6,6 +6,9 @@ var homeController = require('../controllers/homeController')
 router.get('/', function(req, res, next) {
   res.render('index.njk');
 });
+router.get('/about', function(req, res, next) {
+  res.send('This is the about page');
+});
 
 router.post('/api/add-new-book', homeController.saveNewBook);
 router.post('/api/get-book-list', homeController.getBookList);
